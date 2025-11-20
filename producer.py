@@ -10,16 +10,16 @@ order = {
     "order_id":str(uuid.uuid4()),
     "user":"test",
     "item":"saliami",
-    "quantity":2
+    "quantity":3
 }
 
-event_order = json.dumps(order).encode("utf-8")
+event_order = json.dumps(order).encode('utf-8')
 
 def delivery_report(err, msg):
     if err:
         print(f"❌ Delivery failed: {err}")
     else:
-        print(f"✅ Delivery succeeded: {msg.value().decode("uft-8")}") 
+        print(f"✅ Delivery succeeded: {msg.value().decode('utf-8')}") 
 
 
 producer.produce(topic="orders", value=event_order, callback=delivery_report)
